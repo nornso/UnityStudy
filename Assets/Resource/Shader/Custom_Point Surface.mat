@@ -8,7 +8,8 @@ Material:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_Name: Custom_Point Surface
-  m_Shader: {fileID: 4800000, guid: ed6d018ab5d3e09459d7848682efe9b2, type: 3}
+  m_Shader: {fileID: -6465566751694194690, guid: b896baa802a558d4c9337675ac4988ed,
+    type: 3}
   m_ShaderKeywords: 
   m_LightmapFlags: 4
   m_EnableInstancingVariants: 0
