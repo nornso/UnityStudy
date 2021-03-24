@@ -1,0 +1,12 @@
+﻿// Each #kernel tells which function to compile; you can have many kernels
+#pragma kernel FunctionKernel
+
+float _Step;
+
+float2 GetUV(uint3 id)
+{
+	return (id.xy + 0.5) * _Step - 1.0;
+}
+
+[numthreads(8, 8, 1)]
+void FunctionKernel(uint id:SV_DispatchThreadID) {}
