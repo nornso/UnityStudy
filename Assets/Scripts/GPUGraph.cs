@@ -16,6 +16,13 @@ public class GPUGraph : MonoBehaviour
     [SerializeField]
     TransitionMode transtionMode = TransitionMode.Cycle;
 
+    [SerializeField]
+    ComputeShader computeShader = default;
+
+    static readonly int positionsId = Shader.PropertyToID("_Positions"),
+                        resolutionId = Shader.PropertyToID("_Resolution"),
+                        stepId = Shader.PropertyToID("_Step"),
+                        timeId = Shader.PropertyToID("_Time");
     public enum TransitionMode { Cycle, Rnadom };
 
     private float duration;
@@ -28,12 +35,13 @@ public class GPUGraph : MonoBehaviour
 
     private void OnEnable()
     {
+        //3个浮点数,每个4字节
         positionBuffer = new ComputeBuffer(resolution * resolution, 3 * 4);
     }
 
     private void OnDisable()
     {
-        positionBuffer = new ComputeBuffer(resolution * resolution, 3 * 4);
+        positionBuffer.Release();
         positionBuffer = null;
     }
 
@@ -46,5 +54,15 @@ public class GPUGraph : MonoBehaviour
         function = transtionMode == TransitionMode.Cycle ?
                    FunctionLibrary.GetNextFunctionName(function) :
                    FunctionLibrary.GetRandomNextFunctionNameOtherThan(function);
+    }
+
+    void UpdateFunctionOnGpu()
+    {
+        float step = 2f / resolution;
+        computeShader.SetInt(resolutionId, resolution);
+        computeShader.SetFloat(stepId, step);
+        computeShader.SetFloat(timeId, Time.time);
+
+        computeShader.SetBuffer(0, positionsId, positionBuffer);
     }
 }
