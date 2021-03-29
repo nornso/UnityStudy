@@ -9,6 +9,8 @@ public static class FunctionLibrary
 
     static Function[] functions = { Wave, MultiWave, Ripple, Sphere, Torus };
 
+    public static int FunctionCount => functions.Length;
+
     public static FunctionName GetNextFunctionName(FunctionName name)
     {
         if ((int)name < functions.Length - 1)

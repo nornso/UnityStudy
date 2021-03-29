@@ -268,7 +268,7 @@ MonoBehaviour:
   resolution: 203
   functionDuration: 1
   transitionDuration: 1
-  function: 0
+  function: 1
   transtionMode: 0
   computeShader: {fileID: 7200000, guid: f4e91d36714b93649bcbf1bf8bd27a9f, type: 3}
   material: {fileID: 2100000, guid: 7d673e9f6df3dcd44aedceae4a40f953, type: 2}
